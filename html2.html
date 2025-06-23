@@ -1,0 +1,26 @@
+﻿<html>
+<head>
+    <script>
+        function calculatesum(){
+const sub4=parseFloat(document.getElementById('sub4').value)||0;
+const sub5=parseFloat(document.getElementById('sub5').value)||0;
+const sub6=parseFloat(document.getElementById('sub6').value)||0;
+const sum=((sub4*5)+(sub5*5)+(sub6*3))/(5+5+3);
+document.getElementById('result').innerText='sum:'+sum;
+        }
+</script>
+</head>
+<body>
+    <label for="sub4">....<b>Python_language....:</label>
+<input type="number" id="sub4" name="sub4"><br><br>
+<label for="sub5">....<b>python_pratical......:</label>
+<input type="number" id="sub5" name="sub5"><br><br>
+<label for="sub6">...<b>Maths_discrete........:</label>
+<input type="number" id="sub6" name="sub6"><br><br>
+<button onclick="calculatesum()">calculate CGB</button>
+<h2 id="result">sum:</h2> 
+<a href="page3.html">next</a>
+<a href="html1.html">previous</a>
+
+</body>
+</html>

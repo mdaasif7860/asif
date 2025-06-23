@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>cgp calculation
+    </title> 
+<meta charset="UTF-8">
+<meta name="viewport content="width=device-width,initial-scale=1.0">
+
+<script>
+function calculatesum()
+{
+const sub1=parseFloat(document.getElementById('sub1').value)||0;
+const sub2=parseFloat(document.getElementById('sub2').value)||0;
+const sub3=parseFloat(document.getElementById('sub3').value)||0;
+const sum=((sub1*5)+(sub2*5)+(sub3*3))/(5+5+3);
+document.getElementById('result').innerText='sum:'+sum;
+}
+</script>
+  </head>
+   <body>
+    <link rel="stylesheet" href="cgp.css">
+<label for="sub1">.....<b>C_language</b>.....:</label>
+<input type="number" id="sub1" name="sub1"><br><br>
+<label for="sub2">....<b>C_Practical</b>......:</label>
+<input type="number" id="sub2" name="sub2"><br><br>
+<label for="sub3">..<b>maths_satastic</b>...:</label>
+<input type="number" id="sub3" name="sub3"><br><br>
+
+<button onclick="calculatesum()">calculate CGB</button>
+<h2 id="result">sum:</h2> 
+<a href="html2.html">next</a>
+<a href="index.html">previous</a>
+</body>
+</html>

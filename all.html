@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>cgp calculation
+    </title> 
+<meta charset="UTF-8">
+<meta name="viewport content="width=device-width,initial-scale=1.0">
+
+<script>
+function calculatesum()
+{
+const sub1=parseFloat(document.getElementById('sub1').value)||0;
+const sub2=parseFloat(document.getElementById('sub2').value)||0;
+const sub3=parseFloat(document.getElementById('sub3').value)||0;
+const sub21=parseFloat(document.getElementById('sub21').value)||0;
+const sub22=parseFloat(document.getElementById('sub22').value)||0;
+const sub23=parseFloat(document.getElementById('sub23').value)||0;
+const sub31=parseFloat(document.getElementById('sub31').value)||0;
+const sub32=parseFloat(document.getElementById('sub32').value)||0;
+const sub33=parseFloat(document.getElementById('sub33').value)||0;
+const sub41=parseFloat(document.getElementById('sub41').value)||0;
+const sub42=parseFloat(document.getElementById('sub42').value)||0;
+const sub43=parseFloat(document.getElementById('sub43').value)||0;
+
+const sum=((sub1*5)+(sub2*5)+(sub3*3)+(sub21*5)+(sub22*5)+(sub23*3)+(sub31*5)+(sub32*5)+(sub33*3)+(sub41*5)+(sub42*5)+(sub43*3))/(5+5+3+5+5+3+5+5+3+5+5+3);
+document.getElementById('result').innerText='sum:'+sum;
+}
+</script>
+  </head>
+   <body>
+    <link rel="stylesheet" href="cgp.css">
+<label for="sub1">.....<b>C_language</b>.....:</label>
+<input type="number" id="sub1" name="sub1"><br><br>
+<label for="sub2">....<b>C_Practical</b>......:</label>
+<input type="number" id="sub2" name="sub2"><br><br>
+<label for="sub3">..<b>maths_satastic</b>...:</label>
+<input type="number" id="sub3" name="sub3"><br><br>
+<label for="sub21">....<b>Python_language....:</label>
+<input type="number" id="sub21" name="sub21"><br><br>
+<label for="sub22">....<b>python_pratical......:</label>
+<input type="number" id="sub22" name="sub22"><br><br>
+<label for="sub23">...<b>Maths_discrete........:</label>
+<input type="number" id="sub23" name="sub23"><br><br>
+<label for="sub31"><b>...........Artificial Intelligence</b>...........:</label>
+<input type="number" id="sub31" name="sub31"><br><br>
+<label for="sub32">..<b>Artificial Intelligence Practical</b>...:</label>
+<input type="number" id="sub32" name="sub32"><br><br>
+<label for="sub33">...........<b>Internet of things</b>.................:</label>
+<input type="number" id="sub33" name="sub33"><br><br>
+<label for="sub41"><b>...........R programming</b>............:</label>
+<input type="number" id="sub41" name="sub41"><br><br>
+<label for="sub42">..<b>R programming Practical</b>....:</label>
+<input type="number" id="sub42" name="sub42"><br><br>
+<label for="sub43">..<b>CLOUD COMPUTING</b>.......:</label>
+<input type="number" id="sub43" name="sub43"><br><br>
+
+<button onclick="calculatesum()">calculate CGB</button>
+<h2 id="result">sum:</h2> 
+<a href="index.html">next</a>
+<a href="pages6.html">previous</a>
+</body>
+</html>
