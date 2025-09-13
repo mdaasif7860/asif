@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mats - Korai Pai</title>
+
+    <!-- EmailJS -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("LCKzls4QAPmi_m0qC"); // ✅ Your Public Key
+      })();
+    </script>
+
     <style>
       body {
         margin: 0;
@@ -12,7 +21,6 @@
         color: #333;
         animation: fadeIn 1s ease-in-out;
       }
-
       header {
         background: linear-gradient(to right, #1e3c72, #2a5298);
         color: white;
@@ -20,18 +28,15 @@
         text-align: center;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       }
-
       header h2 {
         margin: 0;
         font-size: 28px;
         color: #fdb813;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
       }
-
       nav {
         margin-top: 12px;
       }
-
       nav a {
         text-decoration: none;
         color: white;
@@ -41,23 +46,19 @@
         font-weight: bold;
         transition: all 0.3s ease;
       }
-
       nav a:hover {
         background: #fdb813;
         color: #1e3c72;
       }
-
       main {
         max-width: 1100px;
         margin: 40px auto;
         padding: 0 20px;
       }
-
       .search-box {
         text-align: center;
         margin-bottom: 20px;
       }
-
       .search-box input {
         width: 80%;
         max-width: 400px;
@@ -67,13 +68,11 @@
         font-size: 16px;
         outline: none;
       }
-
       .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
       }
-
       .card {
         background: white;
         border-radius: 12px;
@@ -85,17 +84,14 @@
         flex-direction: column;
         justify-content: space-between;
       }
-
       .card:hover {
         transform: translateY(-8px);
       }
-
       .card img {
         width: 100%;
         height: 200px;
         object-fit: cover;
       }
-
       .card h3 {
         margin: 0;
         padding: 12px;
@@ -103,26 +99,22 @@
         text-align: center;
         background: #eef2f3;
       }
-
       .price {
         text-align: center;
         padding: 10px;
         font-size: 16px;
         font-weight: bold;
       }
-
       .old-price {
         text-decoration: line-through;
         color: #888;
         margin-right: 8px;
         font-size: 15px;
       }
-
       .new-price {
         color: #1e3c72;
         font-size: 18px;
       }
-
       .buy-btn,
       .confirm-btn,
       .submit-btn {
@@ -135,27 +127,23 @@
         cursor: pointer;
         transition: 0.3s;
       }
-
       .buy-btn:hover,
       .confirm-btn:hover,
       .submit-btn:hover {
         background: #fdb813;
         color: #1e3c72;
       }
-
       .quantity-box {
         text-align: center;
         padding: 10px;
         display: none;
       }
-
       .quantity-box input {
         width: 60px;
         padding: 6px;
         font-size: 16px;
         text-align: center;
       }
-
       .orders {
         margin-top: 40px;
         padding: 20px;
@@ -163,19 +151,16 @@
         border-radius: 12px;
         box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
       }
-
       .orders h3 {
         margin-top: 0;
         text-align: center;
         color: #1e3c72;
         font-size: 22px;
       }
-
       .orders ul {
         list-style: none;
         padding: 0;
       }
-
       .orders li {
         padding: 8px 0;
         border-bottom: 1px solid #ddd;
@@ -184,13 +169,24 @@
         justify-content: space-between;
         align-items: center;
       }
-
-      .orders input {
+      .orders input[type="number"] {
         width: 50px;
         text-align: center;
         margin: 0 8px;
       }
-
+      .user-info {
+        margin-top: 15px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+      .user-info input {
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        width: 40%;
+      }
       .total {
         margin-top: 15px;
         text-align: right;
@@ -198,7 +194,6 @@
         font-weight: bold;
         color: #2a5298;
       }
-
       .message {
         margin-top: 15px;
         padding: 12px;
@@ -209,7 +204,6 @@
         text-align: center;
         font-weight: bold;
       }
-
       footer {
         text-align: center;
         background: #1e3c72;
@@ -218,7 +212,6 @@
         margin-top: 40px;
         font-size: 14px;
       }
-
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -227,7 +220,6 @@
           opacity: 1;
         }
       }
-
       @keyframes slideUp {
         from {
           transform: translateY(20px);
@@ -256,7 +248,6 @@
       </div>
 
       <div class="gallery" id="gallery">
-        <!-- Product Example -->
         <div class="card">
           <img src="https://m.media-amazon.com/images/I/81KEUxAYe-L._UF894,1000_QL80_.jpg" alt="White Korai Pai"/>
           <h3>White Korai Pai</h3>
@@ -298,6 +289,13 @@
           <li>No products ordered yet.</li>
         </ul>
         <div class="total" id="totalAmount">Total: ₹0</div>
+
+        <!-- User Info -->
+        <div class="user-info">
+          <input type="text" id="userName" placeholder="Enter your name" />
+          <input type="text" id="userPhone" placeholder="Enter your phone" />
+        </div>
+
         <button class="submit-btn" id="submitOrder">Submit Order</button>
         <div class="message" id="successMessage">
           ✅ Your order was successfully placed!<br />
@@ -309,6 +307,13 @@
     <footer>
       &copy; 2025 AES Matting Company | Handwoven Tradition & Quality
     </footer>
+
+    <!-- Hidden form for EmailJS -->
+    <form id="contact-form" style="display:none;">
+      <input type="text" name="user_name" id="hiddenName" />
+      <input type="text" name="user_phone" id="hiddenPhone" />
+      <textarea name="message" id="hiddenMessage"></textarea>
+    </form>
 
     <script>
       // Search filter
@@ -323,7 +328,7 @@
         });
       });
 
-      // Orders list
+      // Orders
       const ordersList = document.getElementById("ordersList");
       const totalAmount = document.getElementById("totalAmount");
       const successMessage = document.getElementById("successMessage");
@@ -389,7 +394,7 @@
 
         totalAmount.innerText = `Total: ₹${total}`;
 
-        // Update quantity change live
+        // Quantity change update
         document.querySelectorAll("#ordersList input").forEach((input) => {
           input.addEventListener("change", function () {
             const product = input.getAttribute("data-product");
@@ -404,14 +409,46 @@
         });
       }
 
-      // Submit Order button
+      // Submit order
       submitOrder.addEventListener("click", function () {
+        const userName = document.getElementById("userName").value.trim();
+        const userPhone = document.getElementById("userPhone").value.trim();
+
+        if (!userName || !userPhone) {
+          alert("⚠️ Please enter your name and phone number before submitting!");
+          return;
+        }
+
         if (Object.keys(orders).length === 0) {
           alert("⚠️ Please add at least one product before submitting!");
           return;
         }
-alert("✅ Your order was successfully placed!\nOnce call phno 9786055325 to confirm order");
-        successMessage.style.display = "block";
+
+        // Build order details
+        let details = "🛒 Order Details:\n\n";
+        for (let p in orders) {
+          details += `${p} - ${orders[p].quantity} x ₹${orders[p].price} = ₹${orders[p].price * orders[p].quantity}\n`;
+        }
+        details += `\n${totalAmount.innerText}`;
+
+        // Add user info
+        details = `👤 Name: ${userName}\n📞 Phone: ${userPhone}\n\n${details}`;
+
+        // Fill hidden form
+        document.getElementById("hiddenName").value = userName;
+        document.getElementById("hiddenPhone").value = userPhone;
+        document.getElementById("hiddenMessage").value = details;
+
+        // Send email
+        emailjs.sendForm("service_bbvivij", "template_o4vtk09", "#contact-form")
+          .then(() => {
+            alert("✅ Order email sent successfully!");
+            successMessage.style.display = "block";
+          })
+          .catch((error) => {
+            console.error("FAILED...", error);
+            alert("❌ Failed to send order email.");
+          });
       });
     </script>
   </body>
