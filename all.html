@@ -1,63 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>cgp calculation
-    </title> 
+<title>CGPA Calculation</title>
 <meta charset="UTF-8">
-<meta name="viewport content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg,#4e73df,#9b59b6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.container{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    width:95%;
+    max-width:1200px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.25);
+    transition:0.4s;
+}
+
+.container:hover{
+    transform:scale(1.01);
+}
+
+h1{
+    text-align:center;
+    margin:5px;
+    color:#4e73df;
+}
+
+.main{
+    display:flex;
+    gap:40px;
+    margin-top:20px;
+}
+
+.column{
+    flex:1;
+}
+
+.semester{
+    margin-top:20px;
+    padding:10px;
+    background:linear-gradient(135deg,#dfe9ff,#f3e8ff);
+    border-left:6px solid #6f42c1;
+    border-radius:10px;
+    font-weight:bold;
+    color:#6f42c1;
+    transition:0.3s;
+}
+
+.semester:hover{
+    transform:translateX(5px);
+}
+
+label{
+    display:block;
+    margin-top:10px;
+    font-size:14px;
+    color:#333;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    border-radius:8px;
+    border:1px solid #ccc;
+    transition:0.3s;
+}
+
+input:hover{
+    border-color:#6f42c1;
+}
+
+input:focus{
+    outline:none;
+    border-color:#4e73df;
+    box-shadow:0 0 10px rgba(78,115,223,0.4);
+}
+
+input.error{
+    border:2px solid red;
+    background:#ffe6e6;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    margin-top:30px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#4e73df,#9b59b6);
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+button:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+#result{
+    text-align:center;
+    margin-top:20px;
+    font-weight:bold;
+    font-size:18px;
+    color:#333;
+}
+
+@media(max-width:900px){
+    .main{
+        flex-direction:column;
+    }
+}
+</style>
 
 <script>
 function calculatesum()
 {
-const sub1=parseFloat(document.getElementById('sub1').value)||0;
-const sub2=parseFloat(document.getElementById('sub2').value)||0;
-const sub3=parseFloat(document.getElementById('sub3').value)||0;
-const sub21=parseFloat(document.getElementById('sub21').value)||0;
-const sub22=parseFloat(document.getElementById('sub22').value)||0;
-const sub23=parseFloat(document.getElementById('sub23').value)||0;
-const sub31=parseFloat(document.getElementById('sub31').value)||0;
-const sub32=parseFloat(document.getElementById('sub32').value)||0;
-const sub33=parseFloat(document.getElementById('sub33').value)||0;
-const sub41=parseFloat(document.getElementById('sub41').value)||0;
-const sub42=parseFloat(document.getElementById('sub42').value)||0;
-const sub43=parseFloat(document.getElementById('sub43').value)||0;
+let inputs = document.querySelectorAll("input");
+let hasError = false;
 
-const sum=((sub1*5)+(sub2*5)+(sub3*3)+(sub21*5)+(sub22*5)+(sub23*3)+(sub31*5)+(sub32*5)+(sub33*3)+(sub41*5)+(sub42*5)+(sub43*3))/(5+5+3+5+5+3+5+5+3+5+5+3);
-document.getElementById('result').innerText='sum:'+sum;
+inputs.forEach(input => {
+
+    let value = parseFloat(input.value);
+
+    input.classList.remove("error");
+
+    if (value < 0 || value > 100) {
+        alert("Marks must be between 0 and 100 only.");
+        hasError = true;
+    }
+
+    if (value < 30) {
+        input.classList.add("error");
+        hasError = true;
+    }
+});
+
+if(hasError){
+    document.getElementById("result").innerText =
+    "⚠ Please correct highlighted subjects (Minimum 30 required)";
+    return;
+}
+
+const totalCredits = (5+5+3+5+5+3+5+5+3+5+5+3+4+3+3+3+2+3+4);
+
+const weightedSum=
+(sub1.value*5)+(sub2.value*5)+(sub3.value*3)+
+(sub21.value*5)+(sub22.value*5)+(sub23.value*3)+
+(sub31.value*5)+(sub32.value*5)+(sub33.value*3)+
+(sub41.value*5)+(sub42.value*5)+(sub43.value*3)+
+(sub51.value*4)+(sub52.value*3)+(sub53.value*3)+
+(sub54.value*3)+(sub55.value*2)+(sub56.value*3)+(sub57.value*4);
+
+const cgpa = weightedSum / totalCredits;
+
+document.getElementById('result').innerText =
+'🎓 Your CGPA: ' + cgpa.toFixed(2);
 }
 </script>
-  </head>
-   <body>
-    <link rel="stylesheet" href="cgp.css">
-<label for="sub1">.....<b>C_language major</b>.....:</label>
-<input type="number" id="sub1" name="sub1"><br><br>
-<label for="sub2">....<b>C_Practical</b>......:</label>
-<input type="number" id="sub2" name="sub2"><br><br>
-<label for="sub3">..<b>maths_satastic</b>...:</label>
-<input type="number" id="sub3" name="sub3"><br><br>
-<label for="sub21">....<b>Python_language....:</label>
-<input type="number" id="sub21" name="sub21"><br><br>
-<label for="sub22">....<b>python_pratical......:</label>
-<input type="number" id="sub22" name="sub22"><br><br>
-<label for="sub23">...<b>Maths_discrete........:</label>
-<input type="number" id="sub23" name="sub23"><br><br>
-<label for="sub31"><b>...........Artificial Intelligence</b>...........:</label>
-<input type="number" id="sub31" name="sub31"><br><br>
-<label for="sub32">..<b>Artificial Intelligence Practical</b>...:</label>
-<input type="number" id="sub32" name="sub32"><br><br>
-<label for="sub33">...........<b>Internet of things</b>.................:</label>
-<input type="number" id="sub33" name="sub33"><br><br>
-<label for="sub41"><b>...........R programming</b>............:</label>
-<input type="number" id="sub41" name="sub41"><br><br>
-<label for="sub42">..<b>R programming Practical</b>....:</label>
-<input type="number" id="sub42" name="sub42"><br><br>
-<label for="sub43">..<b>CLOUD COMPUTING</b>.......:</label>
-<input type="number" id="sub43" name="sub43"><br><br>
+</head>
 
-<button onclick="calculatesum()">calculate CGB</button>
-<h2 id="result">sum:</h2> 
-<a href="index.html">next</a>
-<a href="pages6.html">previous</a>
+<body>
+
+<div class="container">
+<h1>Artificial Intelligence Department</h1>
+<h1>CGPA Calculator</h1>
+
+<div class="main">
+
+<!-- LEFT SIDE -->
+<div class="column">
+
+<div class="semester">Semester 1</div>
+<label>C Language</label>
+<input type="number" id="sub1" min="0" max="100">
+<label>C Practical</label>
+<input type="number" id="sub2" min="0" max="100">
+<label>Maths Statistics</label>
+<input type="number" id="sub3" min="0" max="100">
+
+<div class="semester">Semester 2</div>
+<label>Python Language</label>
+<input type="number" id="sub21" min="0" max="100">
+<label>Python Practical</label>
+<input type="number" id="sub22" min="0" max="100">
+<label>Maths Discrete</label>
+<input type="number" id="sub23" min="0" max="100">
+
+<div class="semester">Semester 3</div>
+<label>Artificial Intelligence</label>
+<input type="number" id="sub31" min="0" max="100">
+<label>AI Practical</label>
+<input type="number" id="sub32" min="0" max="100">
+<label>Internet of Things</label>
+<input type="number" id="sub33" min="0" max="100">
+
+</div>
+
+<!-- RIGHT SIDE -->
+<div class="column">
+
+<div class="semester">Semester 4</div>
+<label>R Programming</label>
+<input type="number" id="sub41" min="0" max="100">
+<label>R Practical</label>
+<input type="number" id="sub42" min="0" max="100">
+<label>Cloud Computing</label>
+<input type="number" id="sub43" min="0" max="100">
+
+<div class="semester">Semester 5</div>
+<label>Machine Learning</label>
+<input type="number" id="sub51" min="0" max="100">
+<label>ML Practical</label>
+<input type="number" id="sub52" min="0" max="100">
+<label>RDBMS</label>
+<input type="number" id="sub53" min="0" max="100">
+<label>RDBMS Practical</label>
+<input type="number" id="sub54" min="0" max="100">
+<label>Naan Mudhalvan</label>
+<input type="number" id="sub55" min="0" max="100">
+<label>Cryptography</label>
+<input type="number" id="sub56" min="0" max="100">
+<label>Project</label>
+<input type="number" id="sub57" min="0" max="100">
+
+</div>
+
+</div>
+
+<button onclick="calculatesum()">Calculate CGPA</button>
+
+<h2 id="result"></h2>
+
+</div>
 </body>
-
 </html>
